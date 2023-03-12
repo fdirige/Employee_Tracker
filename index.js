@@ -1,6 +1,6 @@
 const express = require('express');
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const db = require ('./server');
 
 //Employee database connection
@@ -11,7 +11,7 @@ db.connect(function () {
 
 //startMenu function
 const startMenu = () => {
-    return inquirer.createPromptModule([
+    return inquirer.prompt([
         {
             type: 'list',
             name: 'menu',

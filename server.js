@@ -1,6 +1,6 @@
 //Express and MySQL requirements
 const express = require('express');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -17,7 +17,7 @@ const db = mysql.createConnection(
         password: 'Erick1988$',
         database: 'employees_db'
     },
-    console.log(`Connected to the Employees databse.`)
+    console.log(`Connected to the Employees database.`)
 );
 
 module.exports = db;
