@@ -1,11 +1,23 @@
 const express = require('express');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
-const mysql = require('mysql');
-const db = require ('./server');
+const mysql = require('mysql2');
+// const db = require ('./server');
+
+const db = mysql.createConnection(
+    {
+        host: 'localhost',
+        user: 'root',
+        password: 'Erick1988$',
+        database: 'employees_db'
+    },
+    console.log(`Connected to the Employees database.`)
+);
 
 //Employee database connection
-db.connect(function () {
+db.connect(function (err) {
+    if (err) {console.log(err) 
+        return };
     console.log(`Connected to the Employee database`);
     startMenu();
 });
@@ -63,7 +75,8 @@ const startMenu = () => {
 const viewAllEmployees = () => {
     console.log('This is a list of all employees')
     db.query(`SELECT * FROM employee`, (err, results) => {
-        if (err) throw err;
+        if (err) {console.log(err) 
+            return };
         console.table(results);
         startMenu();
     });
