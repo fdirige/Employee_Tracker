@@ -241,7 +241,7 @@ const viewAllRoles = () => {
 }
 
 //Add role function
-const AddRole = () => {
+const addRole = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -290,12 +290,13 @@ const AddRole = () => {
                 },
             ]).then(({department}) => {
                 newroleInput.push(department);
-                db.query(`INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`),
+                db.query(`INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`,
                 newroleInput, (err, results) => {
                     if (err) throw err;
                     console.table(results);
                     viewAllRoles();
                 }
+                )
             });
         });
     });
